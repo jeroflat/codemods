@@ -1,0 +1,27 @@
+{
+  "name": "codemods",
+  "packageManager": "yarn@3.2.1",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "scripts": {
+    "commit": "git-cz",
+    "jscodeshift": "node node_modules/.bin/jscodeshift"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    }
+  },
+  "dependencies": {
+    "jscodeshift": "0.13.1"
+  },
+  "devDependencies": {
+    "commitizen": "4.2.4",
+    "cz-conventional-changelog": "3.3.0",
+    "jest": "28.1.1"
+  }
+}
