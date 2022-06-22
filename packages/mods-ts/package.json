@@ -1,0 +1,13 @@
+{
+  "name": "@codemods/mods-ts",
+  "version": "1.0.0",
+  "description": "codemods made with typescript",
+  "license": "MIT",
+  "main": "index.ts",
+  "directories": {
+    "src": "src"
+  },
+  "files": [
+    "src"
+  ]
+}
