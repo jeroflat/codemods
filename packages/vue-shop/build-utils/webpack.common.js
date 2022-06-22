@@ -107,6 +107,13 @@ module.exports = (mode) => {
       new HtmlWebpackPlugin({
         template: setupPath('../src/index.html'),
       }),
+      /**
+       * @see https://github.com/vuejs/core/tree/main/packages/vue#bundler-build-feature-flags
+       */
+      new webpack.DefinePlugin({
+        __VUE_OPTIONS_API__: false,
+        __VUE_PROD_DEVTOOLS__: false,
+      }),
     ],
   };
 };
