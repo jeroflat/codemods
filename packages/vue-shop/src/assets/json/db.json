@@ -1,0 +1,44 @@
+{
+  "products": [
+    {
+      "id": "0",
+      "name": "Nike Air Jordan",
+      "img": "assets/img/nike-air-jordan-left.jpg",
+      "imgHovered": "assets/img/nike-air-jordan-sideways.jpg",
+      "description": "loorem ipsum solor it samet neque porro",
+      "price": 8700,
+      "stock": 4,
+      "shop": "Cool Shop"
+    },
+    {
+      "id": "1",
+      "name": "Nike Stefan Jinoski",
+      "img": "assets/img/nike-stefan-janoski-left.jpg",
+      "imgHovered": "assets/img/nike-stefan-janoski-sideways.jpg",
+      "description": "loorem ipsum solor it samet neque porro",
+      "price": 7890,
+      "stock": 7,
+      "shop": "Mega Shop"
+    },
+    {
+      "id": "2",
+      "name": "Nike Air Force",
+      "img": "assets/img/nike-air-force-left.jpg",
+      "imgHovered": "assets/img/nike-air-force-sideways.jpg",
+      "description": "loorem ipsum solor it samet neque porro",
+      "price": 9200,
+      "stock": 10,
+      "shop": "Stripe Shop"
+    },
+    {
+      "id": "3",
+      "name": "Nike Lunar Force",
+      "img": "assets/img/nike-lunar-force-duckboot-left.jpg",
+      "imgHovered": "assets/img/nike-lunar-force-duckboot-sideways.jpg",
+      "description": "loorem ipsum solor it samet neque porro",
+      "price": 4320,
+      "stock": 23,
+      "shop": "Pay Shop"
+    }
+  ]  
+}

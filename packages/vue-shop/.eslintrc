@@ -1,0 +1,37 @@
+{
+  "parser": "vue-eslint-parser",
+  "parserOptions": {
+    "parser": "@typescript-eslint/parser"
+  },
+  "settings": {
+    "import/resolver": "webpack"
+  },
+  "extends": ["airbnb-base", "plugin:@typescript-eslint/recommended", "plugin:vue/recommended"],
+  "plugins": ["vue-a11y", "vue"],
+  "rules": {
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "linebreak-style": ["error", "unix"],
+    "quotes": [
+      "error",
+      "single",
+      {
+        "allowTemplateLiterals": true
+      }
+    ],
+    "semi": ["error", "always"],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true
+      }
+    ],
+    "@typescript-eslint/indent": ["error", 2],
+    "@typescript-eslint/no-object-literal-type-assertion": "off"
+  }
+}
