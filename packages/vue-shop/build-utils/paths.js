@@ -8,7 +8,7 @@ const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
 const paths = {
   src: resolveApp('src'),
   dist: resolveApp('dist'),
-  indexHTML: resolveApp('src/index.html')
+  indexHTML: resolveApp('src/index.html'),
 };
 
 paths.resolveModules = [paths.src, 'node_modules'];

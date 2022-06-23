@@ -6,7 +6,11 @@
   "settings": {
     "import/resolver": "webpack"
   },
-  "extends": ["airbnb-base", "plugin:@typescript-eslint/recommended", "plugin:vue/recommended"],
+  "extends": [
+    "airbnb-base",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:vue/vue3-recommended"
+  ],
   "plugins": ["vue-a11y", "vue"],
   "rules": {
     "indent": [

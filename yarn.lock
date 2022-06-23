@@ -629,13 +629,14 @@ __metadata:
     classnames: 2.3.1
     compression-webpack-plugin: 10.0.0
     css-loader: 6.7.1
-    css-minimizer-webpack-plugin: ^4.0.0
+    css-minimizer-webpack-plugin: 4.0.0
     eslint: 8.18.0
     eslint-config-airbnb-base: 15.0.0
     eslint-import-resolver-webpack: 0.13.2
     eslint-plugin-import: 2.26.0
-    eslint-plugin-vue: 9.1.1
+    eslint-plugin-vue: ^9.1.1
     eslint-plugin-vue-a11y: 0.0.31
+    eslint-webpack-plugin: 3.1.1
     file-loader: 6.2.0
     html-webpack-plugin: 5.5.0
     json-server: 0.17.0
@@ -1468,6 +1469,16 @@ __metadata:
     "@types/estree": "*"
     "@types/json-schema": "*"
   checksum: cc199be84e22754cc625b171c90852da2b563088d32f4161d310b70470eab47f9bc812774c61eab6530083a214fe634abc32d06ef38e0a5e29f68436331cfabb
+  languageName: node
+  linkType: hard
+
+"@types/eslint@npm:^7.28.2":
+  version: 7.29.0
+  resolution: "@types/eslint@npm:7.29.0"
+  dependencies:
+    "@types/estree": "*"
+    "@types/json-schema": "*"
+  checksum: df13991c554954353ce8f3bb03e19da6cc71916889443d68d178d4f858b561ba4cc4a4f291c6eb9eebb7f864b12b9b9313051b3a8dfea3e513dadf3188a77bdf
   languageName: node
   linkType: hard
 
@@ -3923,7 +3934,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"css-minimizer-webpack-plugin@npm:^4.0.0":
+"css-minimizer-webpack-plugin@npm:4.0.0":
   version: 4.0.0
   resolution: "css-minimizer-webpack-plugin@npm:4.0.0"
   dependencies:
@@ -4893,7 +4904,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-vue@npm:9.1.1":
+"eslint-plugin-vue@npm:^5.2.2":
+  version: 5.2.3
+  resolution: "eslint-plugin-vue@npm:5.2.3"
+  dependencies:
+    vue-eslint-parser: ^5.0.0
+  peerDependencies:
+    eslint: ^5.0.0
+  checksum: 915c62dab21567e3cd5cfaf01d0d31abd4e11086157494cb87dfd408a661b59f4d87fd9a1f38d99a75e4355dd38973c16436e7d930a6c062d387e64a7661120f
+  languageName: node
+  linkType: hard
+
+"eslint-plugin-vue@npm:^9.1.1":
   version: 9.1.1
   resolution: "eslint-plugin-vue@npm:9.1.1"
   dependencies:
@@ -4907,17 +4929,6 @@ __metadata:
   peerDependencies:
     eslint: ^6.2.0 || ^7.0.0 || ^8.0.0
   checksum: 6095e2f1c7ca43a7923d52423b7263fbf947680f628cb86a606ad2cc1e0abcbff67971b2d6bb028f6e710fff9c8b1289d5bda27e3ad253c683ce74c9d520580f
-  languageName: node
-  linkType: hard
-
-"eslint-plugin-vue@npm:^5.2.2":
-  version: 5.2.3
-  resolution: "eslint-plugin-vue@npm:5.2.3"
-  dependencies:
-    vue-eslint-parser: ^5.0.0
-  peerDependencies:
-    eslint: ^5.0.0
-  checksum: 915c62dab21567e3cd5cfaf01d0d31abd4e11086157494cb87dfd408a661b59f4d87fd9a1f38d99a75e4355dd38973c16436e7d930a6c062d387e64a7661120f
   languageName: node
   linkType: hard
 
@@ -4980,6 +4991,22 @@ __metadata:
   version: 3.3.0
   resolution: "eslint-visitor-keys@npm:3.3.0"
   checksum: d59e68a7c5a6d0146526b0eec16ce87fbf97fe46b8281e0d41384224375c4e52f5ffb9e16d48f4ea50785cde93f766b0c898e31ab89978d88b0e1720fbfb7808
+  languageName: node
+  linkType: hard
+
+"eslint-webpack-plugin@npm:3.1.1":
+  version: 3.1.1
+  resolution: "eslint-webpack-plugin@npm:3.1.1"
+  dependencies:
+    "@types/eslint": ^7.28.2
+    jest-worker: ^27.3.1
+    micromatch: ^4.0.4
+    normalize-path: ^3.0.0
+    schema-utils: ^3.1.1
+  peerDependencies:
+    eslint: ^7.0.0 || ^8.0.0
+    webpack: ^5.0.0
+  checksum: 4ff3f3fc8f03a187792f783513c3f4274221623d5f5c16ca90542c1b781fd04ed646ab6043caa55a51a654d5ab2c7039677faedee8bfb526d1310edc3909cbd2
   languageName: node
   linkType: hard
 
@@ -7557,7 +7584,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-worker@npm:^27.4.5, jest-worker@npm:^27.5.1":
+"jest-worker@npm:^27.3.1, jest-worker@npm:^27.4.5, jest-worker@npm:^27.5.1":
   version: 27.5.1
   resolution: "jest-worker@npm:27.5.1"
   dependencies:
