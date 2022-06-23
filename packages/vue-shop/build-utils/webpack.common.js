@@ -3,7 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
 
-const { setupPath } = require('./helpers');
 const paths = require('./paths');
 
 const progressHandler = (percentage, message, ...args) => {
@@ -40,7 +39,6 @@ module.exports = (mode) => {
     },
 
     module: {
-      // rules for modules (configure loaders, parser options, etc.)
       rules: [
         {
           test: /\.vue$/,
@@ -108,7 +106,7 @@ module.exports = (mode) => {
         chunkFilename: prodMode ? '[id].[hash].css' : '[id].css',
       }),
       new HtmlWebpackPlugin({
-        template: setupPath('../src/index.html'),
+        template: paths.indexHTML,
       }),
       /**
        * @see https://github.com/vuejs/core/tree/main/packages/vue#bundler-build-feature-flags
