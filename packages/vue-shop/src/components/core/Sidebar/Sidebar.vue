@@ -54,17 +54,17 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-  @import '~styles/mixins';
-  .sidebar {
-    border-right: 1px solid #ddd;
-    height: 100%;
-    left: 0;
-    padding: 0 1rem;
-    position: fixed;
-    top: 0;
-    width: 15rem;
-    @include element(links) {
-      @include flex($flex-direction: column);
-    }
+@import '~styles/mixins';
+.sidebar {
+  border-right: 1px solid #ddd;
+  height: 100%;
+  left: 0;
+  padding: 0 1rem;
+  position: fixed;
+  top: 0;
+  width: 15rem;
+  @include element(links) {
+    @include flex($flex-direction: column);
   }
+}
 </style>

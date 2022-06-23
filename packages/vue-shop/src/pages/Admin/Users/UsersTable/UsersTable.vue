@@ -1,22 +1,12 @@
 <template>
   <div>
-    <nav
-      v-if="!isLoading"
-      :class="{'fadeIn': !isLoading}"
-      class="animated"
-    >
-      <Button @click="handleCreateUser">
-        Create User
-      </Button>
+    <nav v-if="!isLoading" :class="{ fadeIn: !isLoading }" class="animated">
+      <Button @click="handleCreateUser"> Create User </Button>
     </nav>
     <div class="users-table__spinner">
       <Spinner v-if="isLoading" />
     </div>
-    <div
-      v-if="!isLoading"
-      :class="{'fadeIn': !isLoading}"
-      class="animated"
-    >
+    <div v-if="!isLoading" :class="{ fadeIn: !isLoading }" class="animated">
       <Table>
         <Thead slot="thead">
           <Tr>
@@ -26,10 +16,7 @@
           </Tr>
         </Thead>
         <Tbody slot="tbody">
-          <Tr
-            v-for="user in users"
-            :key="user.id"
-          >
+          <Tr v-for="user in users" :key="user.id">
             <Th>{{ user.firstName }}</Th>
             <Td>{{ user.lastName }}</Td>
             <Td>{{ user.shop }}</Td>
@@ -46,13 +33,7 @@ import { createNamespacedHelpers } from 'vuex';
 import Button from 'components/base/Button';
 import Spinner from 'components/base/Spinner';
 
-import Table, {
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-} from 'components/base/Table';
+import Table, { Thead, Tbody, Tr, Th, Td } from 'components/base/Table';
 
 const { mapState, mapActions } = createNamespacedHelpers('users');
 
@@ -82,13 +63,12 @@ export default {
 </script>
 
 <style lang="scss">
-  @import '~styles/functions/px-to-rem';
-  @import '~styles/mixins';
+@import '~styles/functions/px-to-rem';
+@import '~styles/mixins';
 
-  .users-table {
-    @include element(spinner) {
-      text-align: center;
-    }
+.users-table {
+  @include element(spinner) {
+    text-align: center;
   }
-
+}
 </style>

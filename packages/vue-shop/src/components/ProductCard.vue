@@ -6,10 +6,7 @@
       margin: '0 auto',
     }"
   >
-    <div
-      v-if="hasOverlay"
-      class="product-card__overlay"
-    />
+    <div v-if="hasOverlay" class="product-card__overlay" />
     <img
       :src="image"
       :alt="product.name"
@@ -17,7 +14,7 @@
       @mouseover="handleMouseover"
       @mouseleave="handleMouseleave"
       class="img-fluid product-card__image"
-    >
+    />
     <figcaption
       :class="[hasOverlay ? 'product-card__description--overlay' : 'product-card__description']"
     >

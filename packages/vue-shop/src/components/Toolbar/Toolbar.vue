@@ -7,10 +7,7 @@
         @click="handleFilterClick(filter)"
         class="toolbar__button"
       >
-        <Icon
-          :name="filter.icon"
-          :selected="filter.id === selected"
-        />
+        <Icon :name="filter.icon" :selected="filter.id === selected" />
       </button>
     </div>
   </nav>
@@ -53,28 +50,27 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-  @import '../../assets/scss/mixins/flex';
+@import '../../assets/scss/mixins/flex';
 
-  .toolbar {
-    @include flex($justify-content: flex-end);
-    padding: 0.5rem 0;
+.toolbar {
+  @include flex($justify-content: flex-end);
+  padding: 0.5rem 0;
+}
+
+.toolbar__button {
+  background: none;
+  margin: 0;
+  border: none;
+  outline: none;
+  padding: 0;
+  &:focus {
+    border: none !important;
+    outline: none !important;
   }
+}
 
-  .toolbar__button {
-    background: none;
-    margin: 0;
-    border: none;
-    outline: none;
-    padding: 0;
-    &:focus {
-      border: none !important;
-      outline: none !important;
-    }
-  }
-
-  .toolbar__filters {
-    @include flex($justify-content: space-evenly);
-    width: 5rem;
-  }
-
+.toolbar__filters {
+  @include flex($justify-content: space-evenly);
+  width: 5rem;
+}
 </style>

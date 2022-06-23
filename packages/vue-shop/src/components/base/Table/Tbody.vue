@@ -4,7 +4,7 @@
   </div>
 </template>
 <style lang="scss" scoped>
-  .tbody {
-    display: table-row-group;
-  }
+.tbody {
+  display: table-row-group;
+}
 </style>

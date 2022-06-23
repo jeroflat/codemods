@@ -20,7 +20,7 @@ module.exports = (mode) => {
     resolve: {
       alias: {
         /**
-         * @see https://github.com/vuejs/core/tree/main/packages/vue#with-a-bundler 
+         * @see https://github.com/vuejs/core/tree/main/packages/vue#with-a-bundler
          */
         vue$: 'vue/dist/vue.esm-bundler.js',
         api$: `${paths.src}/api/api.ts`,

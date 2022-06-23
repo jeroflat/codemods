@@ -10,9 +10,6 @@ const paths = {
   dist: resolveApp('dist'),
 };
 
-paths.resolveModules = [
-  paths.src,
-  'node_modules',
-];
+paths.resolveModules = [paths.src, 'node_modules'];
 
 module.exports = paths;

@@ -1,8 +1,6 @@
 <template>
   <div class="dashboard">
-    <h2>
-      Products: {{ productsCount }}
-    </h2>
+    <h2>Products: {{ productsCount }}</h2>
   </div>
 </template>
 
@@ -17,7 +15,7 @@ export default {
 </script>
 
 <style lang="scss">
-  .dashboard {
-    position: relative;
-  }
+.dashboard {
+  position: relative;
+}
 </style>

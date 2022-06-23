@@ -4,7 +4,7 @@
   </div>
 </template>
 <style lang="scss" scoped>
-  .tr {
-    display: table-row;
-  }
+.tr {
+  display: table-row;
+}
 </style>

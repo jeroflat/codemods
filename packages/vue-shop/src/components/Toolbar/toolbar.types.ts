@@ -1,10 +1,10 @@
 export type Filter = {
-  id: string | number,
-  icon: string,
-  value: string
+  id: string | number;
+  icon: string;
+  value: string;
 };
 
 export interface IDataToolbar {
-  selected: string | number,
-  filters: Array<Filter>
+  selected: string | number;
+  filters: Array<Filter>;
 }

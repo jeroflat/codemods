@@ -1,10 +1,7 @@
 <template>
   <section class="container-fluid admin">
     <div class="admin__wrapper">
-      <Sidebar
-        :title="'Dashboard'"
-        :links="links"
-      />
+      <Sidebar :title="'Dashboard'" :links="links" />
       <div class="admin__content">
         <router-view />
       </div>
@@ -41,18 +38,17 @@ export default {
 </script>
 
 <style lang="scss">
-  @import '~styles/mixins';
-  .admin {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    @include element(wrapper) {
-      flex-grow: 1;
-    }
-    @include element(content) {
-      padding-left: 15rem;
-      width: 100%;
-    }
+@import '~styles/mixins';
+.admin {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  @include element(wrapper) {
+    flex-grow: 1;
   }
-
+  @include element(content) {
+    padding-left: 15rem;
+    width: 100%;
+  }
+}
 </style>

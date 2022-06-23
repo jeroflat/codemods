@@ -7,13 +7,13 @@
     }"
     :alt="props.name"
     class="icon"
-  >
+  />
 </template>
 
 <style lang="scss">
-  .icon {
-    cursor: pointer;
-    height: 1.5rem;
-    width: 1.5rem;
-  }
+.icon {
+  cursor: pointer;
+  height: 1.5rem;
+  width: 1.5rem;
+}
 </style>

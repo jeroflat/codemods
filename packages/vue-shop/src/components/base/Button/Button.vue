@@ -1,10 +1,5 @@
 <template>
-  <button
-    :type="type"
-    :class="skins"
-    @click="handleClick"
-    class="button"
-  >
+  <button :type="type" :class="skins" @click="handleClick" class="button">
     <slot />
   </button>
 </template>
@@ -26,9 +21,7 @@ export default Vue.extend({
     },
   },
   data() {
-    const {
-      primary,
-    } = this.$props;
+    const { primary } = this.$props;
     return {
       skins: classNames({
         'button--primary': primary,

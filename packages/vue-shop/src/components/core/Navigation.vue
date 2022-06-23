@@ -1,56 +1,30 @@
 <template>
-  <nav
-    :class="{ active: isActive }"
-    class="navbar navbar-expand-lg navbar-light bg-light"
-  >
-    <router-link
-      class="navbar-brand"
-      to="/"
-    >
+  <nav :class="{ active: isActive }" class="navbar navbar-expand-lg navbar-light bg-light">
+    <router-link class="navbar-brand" to="/">
       <img
         width="30"
         height="30"
         class="d-inline-block align-top"
         src="assets/logo.png"
         alt="logo"
-      >
+      />
     </router-link>
-    <button
-      @click="handleToggleMenu"
-      class="navbar-toggler"
-      type="button"
-    >
+    <button @click="handleToggleMenu" class="navbar-toggler" type="button">
       <span class="navbar-toggler-icon" />
     </button>
 
-    <div
-      :class="{ show: isMenuToggled }"
-      class="collapse navbar-collapse"
-    >
+    <div :class="{ show: isMenuToggled }" class="collapse navbar-collapse">
       <ul class="navbar-nav ml-auto">
-        <li
-          v-for="link in links"
-          :key="link.id"
-          class="nav-item active"
-        >
-          <router-link
-            :to="link.to"
-            class="nav-link active"
-          >
+        <li v-for="link in links" :key="link.id" class="nav-item active">
+          <router-link :to="link.to" class="nav-link active">
             {{ link.name }}
           </router-link>
         </li>
       </ul>
     </div>
     <div class="navigation__cart">
-      <Icon
-        name="cart"
-        height="1.2rem"
-        width="1.2rem"
-      />
-      <span>
-        ( {{ count }} )
-      </span>
+      <Icon name="cart" height="1.2rem" width="1.2rem" />
+      <span> ( {{ count }} ) </span>
     </div>
   </nav>
 </template>
@@ -109,23 +83,21 @@ export default Vue.extend({
     };
   },
   methods: {
-    applyScroll() {
-    },
+    applyScroll() {},
     handleToggleMenu() {
       this.isMenuToggled = !this.isMenuToggled;
     },
   },
 });
-
 </script>
 
 <style lang="scss">
- @import '~styles/mixins';
- .navigation {
+@import '~styles/mixins';
+.navigation {
   @include flex();
   @include element(cart) {
     margin-left: 0.5rem;
     position: relative;
   }
- }
+}
 </style>

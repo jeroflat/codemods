@@ -1,9 +1,6 @@
 import { MutationTree } from 'vuex';
 
-import {
-  SET_PRODUCT,
-  SET_PRODUCTS,
-} from './actionTypes';
+import { SET_PRODUCT, SET_PRODUCTS } from './actionTypes';
 
 import { IProductsState, IProduct } from './products.types';
 

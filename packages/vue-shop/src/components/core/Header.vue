@@ -18,13 +18,11 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-
-  .header {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 10;
-  }
-
+.header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
 </style>

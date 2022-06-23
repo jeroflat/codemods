@@ -1,9 +1,7 @@
 <template>
   <div>
     <nav>
-      <Button @click="handleCreateProduct">
-        Create Product
-      </Button>
+      <Button @click="handleCreateProduct"> Create Product </Button>
     </nav>
     <Table>
       <Thead slot="thead">
@@ -15,10 +13,7 @@
         </Tr>
       </Thead>
       <Tbody slot="tbody">
-        <Tr
-          v-for="product in products"
-          :key="product.name"
-        >
+        <Tr v-for="product in products" :key="product.name">
           <Th>{{ product.name }}</Th>
           <Td>{{ product.price }}</Td>
           <Td>{{ product.stock }}</Td>
@@ -34,13 +29,7 @@ import { createNamespacedHelpers } from 'vuex';
 
 import Button from 'components/base/Button';
 
-import Table, {
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-} from 'components/base/Table';
+import Table, { Thead, Tbody, Tr, Th, Td } from 'components/base/Table';
 
 const { mapState, mapActions } = createNamespacedHelpers('products');
 
@@ -67,6 +56,4 @@ export default {
 };
 </script>
 
-<style>
-
-</style>
+<style></style>

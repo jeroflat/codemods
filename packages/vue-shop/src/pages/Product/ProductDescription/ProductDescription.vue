@@ -15,12 +15,7 @@
       {{ product.description }}
     </p>
     <div>
-      <Button
-        @click="handleAddToCart"
-        primary
-      >
-        Add To Cart
-      </Button>
+      <Button @click="handleAddToCart" primary> Add To Cart </Button>
     </div>
   </article>
 </template>
@@ -44,18 +39,16 @@ export default Vue.extend({
     },
   },
 });
-
 </script>
 
 <style lang="scss">
-
-  .product-description {
-    position: relative;
-  }
-  .product-price {
-    margin: 2rem 0;
-  }
-  .product-text {
-    margin: 2rem 0;
-  }
+.product-description {
+  position: relative;
+}
+.product-price {
+  margin: 2rem 0;
+}
+.product-text {
+  margin: 2rem 0;
+}
 </style>

@@ -47,8 +47,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-
-  .shop {
-    position: relative;
-  }
+.shop {
+  position: relative;
+}
 </style>

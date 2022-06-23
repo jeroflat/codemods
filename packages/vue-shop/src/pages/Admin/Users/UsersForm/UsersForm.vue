@@ -1,8 +1,5 @@
 <template>
-  <form
-    @submit.prevent="handleSubmit"
-    class="users-form"
-  >
+  <form @submit.prevent="handleSubmit" class="users-form">
     <div>
       <div class="form-group">
         <input
@@ -12,7 +9,7 @@
           name="firstName"
           class="form-control"
           placeholder="First name"
-        >
+        />
       </div>
       <div class="form-group">
         <input
@@ -22,7 +19,7 @@
           name="lastName"
           class="form-control"
           placeholder="Last name"
-        >
+        />
       </div>
       <div class="form-group">
         <input
@@ -32,24 +29,14 @@
           name="email"
           class="form-control"
           placeholder="Email"
-        >
+        />
       </div>
       <div class="form-group">
-        <Select
-          :items="[{ id: 0, text: 'Item' }]"
-          @on-select="handleSelect"
-        />
+        <Select :items="[{ id: 0, text: 'Item' }]" @on-select="handleSelect" />
       </div>
-      <Button
-        @click="handleSubmit"
-        type="submit"
-      >
-        Create User
-      </Button>
+      <Button @click="handleSubmit" type="submit"> Create User </Button>
       <div class="users-table__spinner">
-        <Spinner
-          v-if="isLoading"
-        />
+        <Spinner v-if="isLoading" />
       </div>
     </div>
   </form>
@@ -104,7 +91,7 @@ export default {
 </script>
 
 <style lang="scss">
-  .users-form {
-    max-width: 30rem;
-  }
+.users-form {
+  max-width: 30rem;
+}
 </style>

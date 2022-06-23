@@ -27,10 +27,9 @@ module.exports = ({ mode }) => {
       hints: 'warning', // enum
       maxAssetSize: 200000, // int (in bytes),
       maxEntrypointSize: 400000, // int (in bytes)
-      assetFilter: assetFilename => (
+      assetFilter: (assetFilename) =>
         // Function predicate that provides asset filenames
-        assetFilename.endsWith('.css') || assetFilename.endsWith('.js')
-      ),
+        assetFilename.endsWith('.css') || assetFilename.endsWith('.js'),
     },
 
     plugins: [
@@ -40,11 +39,13 @@ module.exports = ({ mode }) => {
         cssProcessor: require('cssnano'),
         cssProcessorPluginOptions: {
           preset: [
-            'default', {
+            'default',
+            {
               discardComments: {
                 removeAll: true,
               },
-            }],
+            },
+          ],
         },
         canPrint: true,
       }),
