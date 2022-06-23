@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack serve --env mode=development",
-    "build": "rimraf dist && yarn webpack --env.mode production",
+    "build": "rimraf dist && yarn webpack --env mode=production",
     "analyze": "yarn build --env.presets analyze",
     "webpack": "node_modules/.bin/webpack",
     "api": "node_modules/.bin/json-server --watch ./src/assets/json/db.json"
