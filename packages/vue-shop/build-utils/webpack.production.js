@@ -1,11 +1,10 @@
 const Webpack = require('webpack');
-const webpackMerge = require('webpack-merge');
+const { merge: webpackMerge } = require('webpack-merge');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 
-const { setupPath } = require('./helpers');
 const paths = require('./paths');
 
 module.exports = ({ mode }) => {
@@ -32,25 +31,24 @@ module.exports = ({ mode }) => {
         assetFilename.endsWith('.css') || assetFilename.endsWith('.js'),
     },
 
-    plugins: [
-      new OptimizeCssAssetsPlugin({
-        assetNameRegExp: /\.css$/g,
-        // eslint-disable-next-line
-        cssProcessor: require('cssnano'),
-        cssProcessorPluginOptions: {
-          preset: [
-            'default',
-            {
-              discardComments: {
-                removeAll: true,
+    optimization: {
+      minimizer: [
+        new CssMinimizerPlugin({
+          minimizerOptions: {
+            preset: [
+              'default',
+              {
+                discardComments: { removeAll: true },
               },
-            },
-          ],
-        },
-        canPrint: true,
-      }),
+            ],
+          },
+        }),
+      ],
+    },
+
+    plugins: [
       new HtmlWebpackPlugin({
-        template: setupPath('./templates/index.html'),
+        template: paths.indexHTML,
         minify: {
           collapseWhitespace: true,
           keepClosingSlash: true,
