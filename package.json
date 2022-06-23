@@ -10,7 +10,8 @@
   "scripts": {
     "commit": "git-cz",
     "jscodeshift": "node node_modules/.bin/jscodeshift",
-    "test": "jest"
+    "test": "jest",
+    "prettier": "prettier --write packages/"
   },
   "config": {
     "commitizen": {
