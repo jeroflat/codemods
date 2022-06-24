@@ -3,7 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
 const webpack = require('webpack');
-
 const paths = require('./paths');
 
 const progressHandler = (percentage, message, ...args) => {
@@ -25,16 +24,7 @@ module.exports = (mode) => {
         vue$: 'vue/dist/vue.esm-bundler.js',
         api$: `${paths.src}/api/api.ts`,
         '@': `${paths.src}`,
-        assets: `${paths.src}/assets`,
         styles: `${paths.src}/assets/scss`,
-        components: `${paths.src}/components`,
-        constants: `${paths.src}/constants`,
-        core: `${paths.src}/components/core`,
-        '@core': `${paths.src}/components/core`,
-        pages: `${paths.src}/pages`,
-        '@store': `${paths.src}/store`,
-        Admin: `${paths.src}/pages/Admin`,
-        utils: `${paths.src}/utils`,
       },
       extensions: ['.js', '.vue', '.json', '.ts'],
     },
@@ -122,7 +112,7 @@ module.exports = (mode) => {
       }),
 
       new ESLintPlugin({
-        extensions: 'vue',
+        extensions: ['vue', 'ts'],
         failOnError: false,
       }),
     ],
