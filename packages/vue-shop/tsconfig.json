@@ -5,11 +5,6 @@
     "paths": {
       "@/*": ["./src/*"],
       "api": ["./src/api/api.ts"],
-      "@core/*": ["./src/components/core/*"],
-      "@store": ["./src/store"],
-      "components/*": ["./src/components/*"],
-      "pages/*": ["./src/pages/*"],
-      "Admin/*": ["./src/pages/Admin*"]
     }
   }
 }
