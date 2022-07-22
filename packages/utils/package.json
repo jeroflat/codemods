@@ -1,0 +1,13 @@
+{
+  "name": "@codemods/utils",
+  "version": "1.0.0",
+  "description": "utils",
+  "license": "MIT",
+  "main": "index.ts",
+  "directories": {
+    "src": "src"
+  },
+  "files": [
+    "src"
+  ]
+}
