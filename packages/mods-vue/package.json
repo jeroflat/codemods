@@ -1,0 +1,17 @@
+{
+  "name": "@codemods/mods-vue",
+  "version": "1.0.0",
+  "description": "codemods for Vue",
+  "license": "MIT",
+  "main": "index.ts",
+  "directories": {
+    "src": "src"
+  },
+  "files": [
+    "src"
+  ],
+  "dependencies": {
+    "@codemods/utils": "workspace:^",
+    "@vue/compiler-dom": "^3.2.37"
+  }
+}
