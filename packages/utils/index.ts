@@ -1,2 +1,3 @@
 export { printAST } from './src/printAST';
-export { setupTest } from './src/runTest';
+export { runTest } from './src/runTest';
+export { format } from './src/format';
