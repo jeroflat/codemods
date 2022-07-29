@@ -3,7 +3,7 @@ import * as path from 'path';
 import { applyTransform } from 'jscodeshift/dist/testUtils';
 import type { Transform } from 'jscodeshift';
 
-type Transformation = { parser: string; default: Transform } | Transform;
+export type Transformation = { parser: string; default: Transform } | Transform;
 
 export const runTest = (
   dirName: string,
