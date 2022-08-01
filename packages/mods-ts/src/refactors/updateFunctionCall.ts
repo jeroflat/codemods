@@ -14,6 +14,9 @@ const isNullLiteral = (node: ASTNode): node is NullLiteral => node.type === 'Nul
 const isGetBlobProperty = (node: MemberExpression) =>
   (node.property as Identifier).name === 'getBlob';
 
+const isPostAndReceiveBlobProperty = (node: MemberExpression) =>
+  (node.property as Identifier).name === 'postAndReceiveBlob';
+
 const renameFetchMethod = (node: MemberExpression, newName: string) =>
   ((node.property as Identifier).name = newName);
 
@@ -116,6 +119,12 @@ export default function updateFunctionCall(fileInfo: FileInfo, api: API) {
       if (fetchProperty) {
         if (isGetBlobProperty(fetchProperty)) {
           renameFetchMethod(node.callee as MemberExpression, 'get');
+
+          propertiesPapi.push(buildProperty('responseType', j.literal('blob')));
+        }
+
+        if (isPostAndReceiveBlobProperty(fetchProperty)) {
+          renameFetchMethod(node.callee as MemberExpression, 'post');
 
           propertiesPapi.push(buildProperty('responseType', j.literal('blob')));
         }

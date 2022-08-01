@@ -36,7 +36,9 @@ describe('update function call', () => {
 
     fetch.put('http://site8.com', {id: '123'});
 
-    fetch.getBlob('http://url-with-blob.com', null, null, 1000)
+    fetch.getBlob('http://url-with-blob.com', null, null, 1000);
+
+    fetch.postAndReceiveBlob('http://blob-blob.com', null, { id: 1 }, 1000);
     `;
 
     const output = `
@@ -87,6 +89,12 @@ describe('update function call', () => {
     });
 
     fetch.get('http://url-with-blob.com', {
+        timeout: 1000,
+        responseType: 'blob',
+    });
+
+    fetch.post('http://blob-blob.com', {
+        data: { id: 1 },
         timeout: 1000,
         responseType: 'blob',
     });
