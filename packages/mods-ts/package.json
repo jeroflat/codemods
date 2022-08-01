@@ -9,5 +9,8 @@
   },
   "files": [
     "src"
-  ]
+  ],
+  "dependencies": {
+    "@codemods/utils": "workspace:^"
+  }
 }
