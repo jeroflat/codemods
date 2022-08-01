@@ -1,6 +1,21 @@
-import type { FileInfo, API, NullLiteral, ASTNode, Property } from 'jscodeshift';
+import type {
+  FileInfo,
+  API,
+  NullLiteral,
+  ASTNode,
+  Property,
+  Identifier,
+  MemberExpression,
+} from 'jscodeshift';
+import { printAST } from '@codemods/utils';
 
 const isNullLiteral = (node: ASTNode): node is NullLiteral => node.type === 'NullLiteral';
+
+const isGetBlobProperty = (node: MemberExpression) =>
+  (node.property as Identifier).name === 'getBlob';
+
+const renameFetchMethod = (node: MemberExpression, newName: string) =>
+  ((node.property as Identifier).name = newName);
 
 const fetchApiOrder = [
   'params',
@@ -12,7 +27,7 @@ const fetchApiOrder = [
   'extraConfig',
 ];
 
-const specialMethods = [
+const specialFetchCalls = [
   'getBlob',
   'postAndReceiveBlob',
   'postMultipartFile',
@@ -70,12 +85,23 @@ export default function updateFunctionCall(fileInfo: FileInfo, api: API) {
     .replaceWith((fetchPath) => {
       const { node } = fetchPath;
       const { arguments: args } = node;
+
+      const memberExpressionsNodes = j(node)
+        .find(j.MemberExpression, {
+          property: {
+            type: 'Identifier',
+          },
+        })
+        .nodes();
+
+      const fetchProperty = memberExpressionsNodes.find((node) =>
+        specialFetchCalls.includes((node.property as Identifier).name),
+      );
+
       // this is a 'get' call, so we don't change anything.
       if (args.length === 1) {
         return fetchPath.node;
       }
-
-      const url = args[0];
 
       let propertiesPapi: Property[] = [];
 
@@ -87,7 +113,15 @@ export default function updateFunctionCall(fileInfo: FileInfo, api: API) {
         }
       });
 
-      node.arguments = [url, j.objectExpression(propertiesPapi)];
+      if (fetchProperty) {
+        if (isGetBlobProperty(fetchProperty)) {
+          renameFetchMethod(node.callee as MemberExpression, 'get');
+
+          propertiesPapi.push(buildProperty('responseType', j.literal('blob')));
+        }
+      }
+
+      node.arguments = [args[0], j.objectExpression(propertiesPapi)];
 
       return node;
     });

@@ -35,6 +35,8 @@ describe('update function call', () => {
     fetch.put('http://site7.com', {id: '123'}, null);
 
     fetch.put('http://site8.com', {id: '123'});
+
+    fetch.getBlob('http://url-with-blob.com', null, null, 1000)
     `;
 
     const output = `
@@ -42,7 +44,7 @@ describe('update function call', () => {
     import some from 'some-other-fetch-library';
 
     some.get('http://yourmom.com');
-    
+
     some.put('http://madafaka.com', {name: 'user name'});
 
     fetch.get('http://site.com');
@@ -82,6 +84,11 @@ describe('update function call', () => {
 
     fetch.put('http://site8.com', {
         params: {id: '123'},
+    });
+
+    fetch.get('http://url-with-blob.com', {
+        timeout: 1000,
+        responseType: 'blob',
     });
     `;
 
