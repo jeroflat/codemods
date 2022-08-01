@@ -12,7 +12,7 @@ export default function variable(fileInfo: FileInfo, api: API) {
       const objName = (path.node.object as Identifier).name;
       const scope = path.scope.lookup(objName);
 
-      console.log(j(path).toSource());
+     //  console.log(j(path).toSource());
 
       const bindings = scope.getBindings()[objName];
 
