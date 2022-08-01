@@ -39,6 +39,10 @@ describe('update function call', () => {
     fetch.getBlob('http://url-with-blob.com', null, null, 1000);
 
     fetch.postAndReceiveBlob('http://blob-blob.com', null, { id: 1 }, 1000);
+
+    fetch.postMultipartFile('http://multi-part-post.com', null, { id: 1 }, null);
+
+    fetch.putMultipartFile('http://multi-part-put.com', null, { id: 1 }, null);
     `;
 
     const output = `
@@ -97,6 +101,22 @@ describe('update function call', () => {
         data: { id: 1 },
         timeout: 1000,
         responseType: 'blob',
+    });
+
+    fetch.post('http://multi-part-post.com', {
+        data: { id: 1 },
+
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+    });
+
+    fetch.put('http://multi-part-put.com', {
+        data: { id: 1 },
+
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
     });
     `;
 

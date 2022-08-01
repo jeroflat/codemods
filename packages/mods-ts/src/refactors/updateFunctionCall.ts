@@ -7,18 +7,8 @@ import type {
   Identifier,
   MemberExpression,
 } from 'jscodeshift';
+import { anyPass, equals, pathSatisfies } from 'ramda';
 import { printAST } from '@codemods/utils';
-
-const isNullLiteral = (node: ASTNode): node is NullLiteral => node.type === 'NullLiteral';
-
-const isGetBlobProperty = (node: MemberExpression) =>
-  (node.property as Identifier).name === 'getBlob';
-
-const isPostAndReceiveBlobProperty = (node: MemberExpression) =>
-  (node.property as Identifier).name === 'postAndReceiveBlob';
-
-const renameFetchMethod = (node: MemberExpression, newName: string) =>
-  ((node.property as Identifier).name = newName);
 
 const fetchApiOrder = [
   'params',
@@ -38,6 +28,28 @@ const specialFetchCalls = [
   'putCSVFile',
 ];
 
+const isNullLiteral = (node: ASTNode): node is NullLiteral => node.type === 'NullLiteral';
+
+/**
+ * creates a function that makes an equality check againts
+ * `fetch` member expression property name
+ */
+const testFetchMethod = (prop: string) =>
+  pathSatisfies<string, MemberExpression>(equals(prop), ['property', 'name']);
+
+const isGetBlobProperty = testFetchMethod('getBlob');
+
+const isPostAndReceiveBlobProperty = testFetchMethod('postAndReceiveBlob');
+
+const isPostMultipartFile = testFetchMethod('postMultipartFile');
+
+const isPutMultipartFile = testFetchMethod('putMultipartFile');
+
+const isMultipartFileMethod = anyPass([isPutMultipartFile, isPostMultipartFile]);
+
+const renameFetchMethod = (node: MemberExpression, newName: string) =>
+  ((node.property as Identifier).name = newName);
+
 export const parser = 'ts';
 
 export default function updateFunctionCall(fileInfo: FileInfo, api: API) {
@@ -47,6 +59,9 @@ export default function updateFunctionCall(fileInfo: FileInfo, api: API) {
 
   const buildProperty = (name: string, value: ValueParam) =>
     j.property('init', j.identifier(name), value);
+
+  const buildStringLiteralProperty = (name: string, value: ValueParam) =>
+    j.property('init', j.stringLiteral(name), value);
 
   const j = api.jscodeshift;
 
@@ -127,6 +142,21 @@ export default function updateFunctionCall(fileInfo: FileInfo, api: API) {
           renameFetchMethod(node.callee as MemberExpression, 'post');
 
           propertiesPapi.push(buildProperty('responseType', j.literal('blob')));
+        }
+
+        if (isMultipartFileMethod(fetchProperty)) {
+          const methodName = isPostMultipartFile(fetchProperty) ? 'post' : 'put';
+
+          renameFetchMethod(node.callee as MemberExpression, methodName);
+
+          propertiesPapi.push(
+            buildProperty(
+              'headers',
+              j.objectExpression([
+                buildStringLiteralProperty('Content-Type', j.stringLiteral('multipart/form-data')),
+              ]),
+            ),
+          );
         }
       }
 
