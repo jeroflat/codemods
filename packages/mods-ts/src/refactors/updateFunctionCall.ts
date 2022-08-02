@@ -1,14 +1,8 @@
-import type {
-  FileInfo,
-  API,
-  NullLiteral,
-  ASTNode,
-  Property,
-  Identifier,
-  MemberExpression,
-} from 'jscodeshift';
+import { literal } from 'jscodeshift';
+import type { FileInfo, API, Property, Identifier, MemberExpression } from 'jscodeshift';
 import { anyPass, equals, pathSatisfies } from 'ramda';
-import { printAST } from '@codemods/utils';
+import { buildProperty, buildStringLiteralProperty, isNullLiteral } from '@codemods/utils';
+import type { PropertyValue } from '@codemods/utils';
 
 const fetchApiOrder = [
   'params',
@@ -27,8 +21,6 @@ const specialFetchCalls = [
   'putMultipartFile',
   'putCSVFile',
 ];
-
-const isNullLiteral = (node: ASTNode): node is NullLiteral => node.type === 'NullLiteral';
 
 /**
  * creates a function that makes an equality check againts
@@ -50,18 +42,12 @@ const isMultipartFileMethod = anyPass([isPutMultipartFile, isPostMultipartFile])
 const renameFetchMethod = (node: MemberExpression, newName: string) =>
   ((node.property as Identifier).name = newName);
 
+const blobResponseTypeProp = buildProperty('responseType', literal('blob'));
+
 export const parser = 'ts';
 
 export default function updateFunctionCall(fileInfo: FileInfo, api: API) {
   const { source } = fileInfo;
-
-  type ValueParam = Parameters<typeof j.property>[1];
-
-  const buildProperty = (name: string, value: ValueParam) =>
-    j.property('init', j.identifier(name), value);
-
-  const buildStringLiteralProperty = (name: string, value: ValueParam) =>
-    j.property('init', j.stringLiteral(name), value);
 
   const j = api.jscodeshift;
 
@@ -82,8 +68,8 @@ export default function updateFunctionCall(fileInfo: FileInfo, api: API) {
       return node;
     });
 
-  // get the local name for the imported module
-  const localName =
+  // get the import's name for the imported module
+  const importName =
     // find the Identifiers
     // get the Node in the NodePath and grab its "name"
     importDeclaration
@@ -96,7 +82,7 @@ export default function updateFunctionCall(fileInfo: FileInfo, api: API) {
       callee: {
         type: 'MemberExpression',
         object: {
-          name: localName,
+          name: importName,
         },
       },
     })
@@ -124,7 +110,7 @@ export default function updateFunctionCall(fileInfo: FileInfo, api: API) {
       let propertiesPapi: Property[] = [];
 
       fetchApiOrder.forEach((order, idx) => {
-        const arg = args[idx + 1] as ValueParam;
+        const arg = args[idx + 1] as PropertyValue;
 
         if (arg && !isNullLiteral(arg)) {
           propertiesPapi.push(buildProperty(order, arg));
@@ -135,13 +121,13 @@ export default function updateFunctionCall(fileInfo: FileInfo, api: API) {
         if (isGetBlobProperty(fetchProperty)) {
           renameFetchMethod(node.callee as MemberExpression, 'get');
 
-          propertiesPapi.push(buildProperty('responseType', j.literal('blob')));
+          propertiesPapi.push(blobResponseTypeProp);
         }
 
         if (isPostAndReceiveBlobProperty(fetchProperty)) {
           renameFetchMethod(node.callee as MemberExpression, 'post');
 
-          propertiesPapi.push(buildProperty('responseType', j.literal('blob')));
+          propertiesPapi.push(blobResponseTypeProp);
         }
 
         if (isMultipartFileMethod(fetchProperty)) {
