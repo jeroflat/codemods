@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
+// @ts-ignore
 import { applyTransform } from 'jscodeshift/dist/testUtils';
 import type { Transform } from 'jscodeshift';
 

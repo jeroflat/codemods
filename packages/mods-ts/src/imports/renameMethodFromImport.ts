@@ -12,10 +12,9 @@ export default function variable(fileInfo: FileInfo, api: API) {
       const objName = (path.node.object as Identifier).name;
       const scope = path.scope.lookup(objName);
 
-     //  console.log(j(path).toSource());
-
       const bindings = scope.getBindings()[objName];
 
+      // @ts-ignore TODO: extend typings to support this case.
       bindings.forEach((binding) => {
         const gp = binding.parent.parent.node;
 

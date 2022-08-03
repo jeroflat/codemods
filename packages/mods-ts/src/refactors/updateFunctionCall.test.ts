@@ -1,3 +1,4 @@
+// @ts-ignore
 import { applyTransform } from 'jscodeshift/dist/testUtils';
 import { format } from '@codemods/mods-utils';
 

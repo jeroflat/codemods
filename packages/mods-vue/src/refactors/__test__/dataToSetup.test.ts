@@ -1,5 +1,5 @@
 import type { Transform } from 'jscodeshift';
-import { runTest } from '@codemods/utils';
+import { runTest } from '@codemods/mods-utils';
 
 /**
  * @link https://github.com/facebook/jscodeshift/blob/main/README.md#es-modules

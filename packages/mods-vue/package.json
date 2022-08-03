@@ -3,13 +3,15 @@
   "version": "1.0.0",
   "description": "codemods for Vue",
   "license": "MIT",
-  "main": "index.ts",
-  "directories": {
-    "src": "src"
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./build/index.d.ts",
+      "default": "./build/index.js"
+    },
+    "./package.json": "./package.json"
   },
-  "files": [
-    "src"
-  ],
   "dependencies": {
     "@codemods/mods-utils": "workspace:^",
     "@vue/compiler-dom": "^3.2.37"
