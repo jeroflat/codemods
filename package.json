@@ -2,6 +2,7 @@
   "name": "codemods",
   "packageManager": "yarn@3.2.1",
   "private": true,
+  "type": "module",
   "workspaces": {
     "packages": [
       "packages/*"

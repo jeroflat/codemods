@@ -1,11 +1,10 @@
-const fs = require('node:fs');
-const path = require('node:path');
+import fs from 'node:fs';
+import path from 'node:path';
 
-// get all packages in monorepo
-const packagesPath = path.resolve(__dirname, 'packages');
+import { PACKAGES } from './buildConfig/paths.mjs';
 
-const packages = fs.readdirSync(packagesPath).filter((name) => {
-  return fs.lstatSync(path.join(packagesPath, name)).isDirectory();
+const packages = fs.readdirSync(PACKAGES).filter((name) => {
+  return fs.lstatSync(path.join(PACKAGES, name)).isDirectory();
 });
 
 const makeJestProjectConfig = (pkgName) => ({
@@ -21,7 +20,7 @@ const makeJestProjectConfig = (pkgName) => ({
   moduleFileExtensions: ['js', 'json', 'jsx', 'node', 'mjs', 'ts', 'tsx'],
 });
 
-module.exports = {
+export default {
   verbose: true,
   projects: packages.map(makeJestProjectConfig),
 };
