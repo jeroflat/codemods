@@ -11,7 +11,7 @@
     "src"
   ],
   "dependencies": {
-    "@codemods/utils": "workspace:^",
+    "@codemods/mods-utils": "workspace:^",
     "@vue/compiler-dom": "^3.2.37"
   }
 }

@@ -1,4 +1,4 @@
-const utilsPkg = require('./packages/utils/package.json');
+const utilsPkg = require('./packages/mods-utils/package.json');
 const modsCjsPkg = require('./packages/mods-cjs/package.json');
 const modsTsPkg = require('./packages/mods-ts/package.json');
 const modsVuePkg = require('./packages/mods-vue/package.json');

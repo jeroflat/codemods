@@ -1,8 +1,8 @@
 import { literal } from 'jscodeshift';
 import type { FileInfo, API, Property, Identifier, MemberExpression } from 'jscodeshift';
 import { anyPass, equals, pathSatisfies } from 'ramda';
-import { buildProperty, buildStringLiteralProperty, isNullLiteral } from '@codemods/utils';
-import type { PropertyValue } from '@codemods/utils';
+import { buildProperty, buildStringLiteralProperty, isNullLiteral } from '@codemods/mods-utils';
+import type { PropertyValue } from '@codemods/mods-utils';
 
 const fetchApiOrder = [
   'params',
