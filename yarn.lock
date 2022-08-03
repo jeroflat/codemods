@@ -591,15 +591,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@codemods/mods-cjs@workspace:packages/mods-cjs":
-  version: 0.0.0-use.local
-  resolution: "@codemods/mods-cjs@workspace:packages/mods-cjs"
-  languageName: unknown
-  linkType: soft
-
 "@codemods/mods-ts@workspace:packages/mods-ts":
   version: 0.0.0-use.local
   resolution: "@codemods/mods-ts@workspace:packages/mods-ts"
+  dependencies:
+    "@codemods/mods-utils": "workspace:^"
   languageName: unknown
   linkType: soft
 
@@ -1079,7 +1075,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tsconfig/node16@npm:^1.0.2":
+"@tsconfig/node16@npm:^1.0.2, @tsconfig/node16@npm:^1.0.3":
   version: 1.0.3
   resolution: "@tsconfig/node16@npm:1.0.3"
   checksum: 3a8b657dd047495b7ad23437d6afd20297ce90380ff0bdee93fc7d39a900dbd8d9e26e53ff6b465e7967ce2adf0b218782590ce9013285121e6a5928fbd6819f
@@ -1161,7 +1157,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jest@npm:^28.1.6":
+"@types/jest@npm:28.1.6":
   version: 28.1.6
   resolution: "@types/jest@npm:28.1.6"
   dependencies:
@@ -1181,10 +1177,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:>=12, @types/node@npm:^18.6.2":
+"@types/node@npm:*, @types/node@npm:>=12":
   version: 18.6.3
   resolution: "@types/node@npm:18.6.3"
   checksum: 38495b8fd27200d2b7ab9ccd8c1e2475d2411fba15330f2cba869a85ef79dd42382a2658c8dd298ace8c21ed3bfafcdea408faecd74928b144377d07d00e7c8c
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:18.6.2":
+  version: 18.6.2
+  resolution: "@types/node@npm:18.6.2"
+  checksum: 644c460baedb1fbbd55369ab621167cb39ddaa727fd4fcf4bc7080183cf936d7ff8c2c886ba93ff42768d6f7a579a540e6d1e63d3adba4e5758fb13671ae68ce
   languageName: node
   linkType: hard
 
@@ -1202,7 +1205,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/ramda@npm:^0.28.15":
+"@types/ramda@npm:0.28.15":
   version: 0.28.15
   resolution: "@types/ramda@npm:0.28.15"
   dependencies:
@@ -1971,16 +1974,17 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "codemods@workspace:."
   dependencies:
-    "@types/jest": ^28.1.6
+    "@tsconfig/node16": ^1.0.3
+    "@types/jest": 28.1.6
     "@types/jscodeshift": 0.11.5
-    "@types/node": ^18.6.2
-    "@types/ramda": ^0.28.15
+    "@types/node": 18.6.2
+    "@types/ramda": 0.28.15
     commitizen: 4.2.4
     cz-conventional-changelog: 3.3.0
     jest: 28.1.3
     jscodeshift: 0.13.1
     prettier: 2.7.1
-    ramda: ^0.28.0
+    ramda: 0.28.0
     ts-jest: 28.0.5
     typescript: 4.7.4
   languageName: unknown
@@ -4921,7 +4925,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ramda@npm:^0.28.0":
+"ramda@npm:0.28.0":
   version: 0.28.0
   resolution: "ramda@npm:0.28.0"
   checksum: 44ea6e5010bba70151b6a92d8114a91915e8b5a16105cce65fae58c9d7386b812c429645e35f21141d7087568550ce383bc10ee1a65cdec951f4b69ea457e6a4
@@ -6054,9 +6058,9 @@ __metadata:
   linkType: hard
 
 "yargs-parser@npm:^21.0.0, yargs-parser@npm:^21.0.1":
-  version: 21.0.1
-  resolution: "yargs-parser@npm:21.0.1"
-  checksum: c3ea2ed12cad0377ce3096b3f138df8267edf7b1aa7d710cd502fe16af417bafe4443dd71b28158c22fcd1be5dfd0e86319597e47badf42ff83815485887323a
+  version: 21.1.0
+  resolution: "yargs-parser@npm:21.1.0"
+  checksum: c08da2d9de3d1794c1039caf82b569bc83e457034dcf5b843122bd5452bcbdd5cfe8e24288a236336d26dc3e72a64184e9dad9b6161d256e4722e65cfb6a4140
   languageName: node
   linkType: hard
 
