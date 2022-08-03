@@ -1,42 +1,27 @@
-const utilsPkg = require('./packages/mods-utils/package.json');
-const modsCjsPkg = require('./packages/mods-cjs/package.json');
-const modsTsPkg = require('./packages/mods-ts/package.json');
-const modsVuePkg = require('./packages/mods-vue/package.json');
+const fs = require('node:fs');
+const path = require('node:path');
+
+// get all packages in monorepo
+const packagesPath = path.resolve(__dirname, 'packages');
+
+const packages = fs.readdirSync(packagesPath).filter((name) => {
+  return fs.lstatSync(path.join(packagesPath, name)).isDirectory();
+});
+
+const makeJestProjectConfig = (pkgName) => ({
+  displayName: pkgName,
+  testEnvironment: 'node',
+  testMatch: [
+    `<rootDir>/packages/${pkgName}/**/?(*.)+(spec|test).[jt]s?(x)`,
+    `<rootDir>/packages/${pkgName}/**/__tests__/**/*.{js,jsx,mjs,ts,tsx}`,
+  ],
+  transform: {
+    '^.+\\.tsx?$': 'ts-jest',
+  },
+  moduleFileExtensions: ['js', 'json', 'jsx', 'node', 'mjs', 'ts', 'tsx'],
+});
 
 module.exports = {
   verbose: true,
-  projects: [
-    {
-      displayName: utilsPkg.name,
-      testEnvironment: 'node',
-      testMatch: ['<rootDir>/packages/utils/**/?(*.)+(spec|test).[jt]s?(x)'],
-      transform: {
-        '^.+\\.tsx?$': 'ts-jest',
-      },
-    },
-    {
-      displayName: modsCjsPkg.name,
-      testEnvironment: 'node',
-      testMatch: ['<rootDir>/packages/basic-mods/**/?(*.)+(spec|test).[jt]s?(x)'],
-    },
-    {
-      displayName: modsTsPkg.name,
-      testEnvironment: 'node',
-      testMatch: ['<rootDir>/packages/mods-ts/**/?(*.)+(spec|test).[jt]s?(x)'],
-      transform: {
-        '^.+\\.tsx?$': 'ts-jest',
-      },
-    },
-    {
-      displayName: modsVuePkg.name,
-      testEnvironment: 'node',
-      testMatch: [
-        '<rootDir>/packages/mods-vue/**/?(*.)+(spec|test).[jt]s?(x)',
-        '<rootDir>/packages/mods-vue/**/__tests__/**/*.{js,jsx,mjs,ts,tsx}',
-      ],
-      transform: {
-        '^.+\\.tsx?$': 'ts-jest',
-      },
-    },
-  ],
+  projects: packages.map(makeJestProjectConfig),
 };
