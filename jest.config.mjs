@@ -1,10 +1,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-import { PACKAGES } from './buildConfig/paths.mjs';
+import { PACKAGES_DIR } from './buildConfig/paths.mjs';
 
-const packages = fs.readdirSync(PACKAGES).filter((name) => {
-  return fs.lstatSync(path.join(PACKAGES, name)).isDirectory();
+const packages = fs.readdirSync(PACKAGES_DIR).filter((name) => {
+  return fs.lstatSync(path.join(PACKAGES_DIR, name)).isDirectory();
 });
 
 const makeJestProjectConfig = (pkgName) => ({
