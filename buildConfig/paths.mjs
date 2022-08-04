@@ -3,4 +3,4 @@ import url from 'node:url';
 
 export const ROOT = url.fileURLToPath(new URL('../', import.meta.url));
 
-export const PACKAGES = path.resolve(ROOT, 'packages');
+export const PACKAGES_DIR = path.resolve(ROOT, 'packages');
